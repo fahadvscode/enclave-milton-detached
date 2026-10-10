@@ -60,8 +60,8 @@ export async function POST(request: Request) {
 
     let { error } = await supabase.from("enclave_milton_leads").insert(row);
     if (error && /notes/i.test(error.message)) {
-      const retryRow = { ...row };
-      delete retryRow.notes;
+      const { notes, ...retryRow } = row;
+      void notes;
       const retry = await supabase.from("enclave_milton_leads").insert(retryRow);
       error = retry.error;
     }
