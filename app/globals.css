@@ -1,26 +1,218 @@
 @import "tailwindcss";
 
+/* Palette note: no official Sundial Homes palette or logo was available for a
+   detached collection, because that product has not been marketed yet.
+   Navy, copper, and ivory below are a placeholder pending Sundial Homes'
+   official detached-collection branding. Do not replace this wordmark with
+   the Sundial Homes logo.
+   Copper (#B07D4F) on ivory is below 4.5:1, so it is used for rules, borders,
+   and focus rings — not for small text. Body text stays navy or muted. */
+
 :root {
-  --background: #ffffff;
-  --foreground: #171717;
+  --brand-primary: #1b2a41;
+  --brand-deep: #0e1826;
+  --brand-accent: #b07d4f;
+  --surface: #faf7f2;
+  --surface-alt: #f0eae0;
+  --text-primary: #1b2a41;
+  --text-muted: #5b6676;
+  --border: #dcd3c4;
 }
 
 @theme inline {
-  --color-background: var(--background);
-  --color-foreground: var(--foreground);
-  --font-sans: var(--font-geist-sans);
-  --font-mono: var(--font-geist-mono);
+  --color-brand-primary: var(--brand-primary);
+  --color-brand-deep: var(--brand-deep);
+  --color-brand-accent: var(--brand-accent);
+  --color-surface: var(--surface);
+  --color-surface-alt: var(--surface-alt);
+  --color-text-primary: var(--text-primary);
+  --color-text-muted: var(--text-muted);
+  --color-border: var(--border);
+  --font-display: var(--font-playfair);
+  --font-sans: var(--font-source-sans);
 }
 
-@media (prefers-color-scheme: dark) {
-  :root {
-    --background: #0a0a0a;
-    --foreground: #ededed;
+html {
+  scroll-behavior: smooth;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }
 
 body {
-  background: var(--background);
-  color: var(--foreground);
-  font-family: Arial, Helvetica, sans-serif;
+  background: var(--surface);
+  color: var(--text-primary);
+  font-family: var(--font-source-sans), "Source Sans 3", sans-serif;
+  font-size: 1.125rem;
+  line-height: 1.65;
+}
+
+h1,
+h2 {
+  font-family: var(--font-playfair), "Playfair Display", Georgia, serif;
+  font-weight: 560;
+  letter-spacing: -0.02em;
+  line-height: 1.15;
+}
+
+:focus-visible {
+  outline: 2px solid var(--brand-accent);
+  outline-offset: 3px;
+}
+
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 80;
+  background: var(--surface);
+  color: var(--brand-primary);
+  padding: 0.5rem 0.75rem;
+}
+
+.skip-link:focus {
+  top: 0.75rem;
+}
+
+.eyebrow {
+  font-family: var(--font-source-sans), sans-serif;
+  font-size: 0.8125rem;
+  font-weight: 600;
+  letter-spacing: 0.14em;
+  line-height: 1.4;
+  text-transform: uppercase;
+  color: var(--brand-primary);
+}
+
+.prose-measure {
+  max-width: 70ch;
+}
+
+.prose-measure p + p {
+  margin-top: 1.15rem;
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 1rem;
+  line-height: 1.45;
+}
+
+.data-table th,
+.data-table td {
+  border-bottom: 1px solid var(--border);
+  padding: 0.85rem 0.9rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+.data-table th {
+  font-size: 0.78rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+}
+
+.data-table tbody tr:nth-child(even) {
+  background: rgb(255 255 255 / 0.45);
+}
+
+.card {
+  background: #fffdf9;
+  border: 1px solid var(--border);
+  padding: 1.35rem 1.4rem;
+}
+
+.btn-primary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--brand-primary);
+  color: var(--surface);
+  border: 1px solid var(--brand-accent);
+  padding: 0.85rem 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.btn-primary:hover {
+  background: var(--brand-deep);
+}
+
+@media (max-width: 767px) {
+  .btn-primary,
+  .btn-secondary,
+  button[type="submit"] {
+    scroll-margin-bottom: 7rem;
+  }
+}
+
+.btn-secondary {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: transparent;
+  color: var(--surface);
+  border: 1px solid rgb(250 247 242 / 0.7);
+  padding: 0.85rem 1.2rem;
+  font-weight: 600;
+  line-height: 1.2;
+  text-decoration: none;
+}
+
+.btn-secondary:hover {
+  border-color: var(--brand-accent);
+}
+
+.text-link {
+  color: var(--brand-primary);
+  text-decoration: underline;
+  text-decoration-color: var(--brand-accent);
+  text-underline-offset: 3px;
+}
+
+.field-label {
+  display: block;
+  margin-bottom: 0.35rem;
+  font-size: 0.95rem;
+  font-weight: 600;
+}
+
+.field-input {
+  width: 100%;
+  border: 1px solid var(--border);
+  background: #fff;
+  color: var(--text-primary);
+  padding: 0.7rem 0.75rem;
+  font: inherit;
+  font-size: 1rem;
+}
+
+.field-error {
+  margin-top: 0.3rem;
+  color: #7a2e24;
+  font-size: 0.92rem;
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  .reveal {
+    animation: rise 380ms ease-out both;
+  }
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(12px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }

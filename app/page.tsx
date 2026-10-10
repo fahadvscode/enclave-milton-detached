@@ -1,103 +1,180 @@
-import Image from "next/image";
+import Link from "next/link";
+import { AnswerFirstSummary } from "@/components/AnswerFirstSummary";
+import { Hero } from "@/components/Hero";
+import { LeadForm } from "@/components/LeadForm";
+import { MasterplanBreakdown } from "@/components/MasterplanBreakdown";
+import { QuickFacts } from "@/components/QuickFacts";
+import { JsonLd, PricingDisclaimer, Prose, Section, SiblingLink } from "@/components/ui";
+import {
+  aboutSundial,
+  answerFirstHome,
+  budgetNote,
+  detachedAnnouncements,
+  howToRead,
+  overviewParagraphs,
+  pageMeta,
+  townsVersusDetached,
+  whyRegister,
+} from "@/lib/content";
+import { breadcrumbJsonLd, heroImageJsonLd, residenceJsonLd } from "@/lib/jsonld";
+import { buildMetadata } from "@/lib/seo";
 
-export default function Home() {
+export const metadata = buildMetadata(pageMeta.home);
+
+export default function HomePage() {
   return (
-    <div className="font-sans grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="font-mono list-inside list-decimal text-sm/6 text-center sm:text-left">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] font-mono font-semibold px-1 py-0.5 rounded">
-              app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
-
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+    <>
+      <JsonLd data={residenceJsonLd()} />
+      <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }])} />
+      <JsonLd data={heroImageJsonLd} />
+      <Hero />
+      <Section>
+        <AnswerFirstSummary heading="The Enclave detached homes in Milton" text={answerFirstHome} />
+        <PricingDisclaimer />
+      </Section>
+      <Section alt>
+        <h2 className="text-3xl md:text-4xl">Quick facts</h2>
+        <div className="mt-6">
+          <QuickFacts />
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
-    </div>
+        <PricingDisclaimer />
+      </Section>
+      <Section>
+        <h2 className="text-3xl md:text-4xl">Project overview</h2>
+        <Prose>
+          <div className="mt-5">
+            {overviewParagraphs.map((paragraph) => (
+              <p key={paragraph.slice(0, 32)}>{paragraph}</p>
+            ))}
+          </div>
+        </Prose>
+        <p className="mt-6">
+          <SiblingLink />
+        </p>
+        <PricingDisclaimer />
+      </Section>
+      <Section alt>
+        <h2 className="text-3xl md:text-4xl">Detached details still to be announced</h2>
+        <Prose>
+          <p className="mt-5">
+            Sundial Homes has not published a detached count, lot width, unit size, bedroom count, price, deposit, incentive, launch date, or collection name for this Milton community. Those fields are listed as to be announced. They are not omitted, and they are not filled with a guess.
+          </p>
+        </Prose>
+        <div className="mt-6 overflow-x-auto">
+          <table className="data-table">
+            <caption className="sr-only">Detached-home details that Sundial Homes has not released</caption>
+            <thead>
+              <tr>
+                <th scope="col">Detached detail</th>
+                <th scope="col">Status</th>
+              </tr>
+            </thead>
+            <tbody>
+              {detachedAnnouncements.map((row) => (
+                <tr key={row.field}>
+                  <th scope="row" className="normal-case tracking-normal text-text-primary">
+                    {row.field}
+                  </th>
+                  <td>{row.value}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+        <Prose>
+          <p className="mt-5">{budgetNote}</p>
+        </Prose>
+      </Section>
+      <Section>
+        <h2 className="text-3xl md:text-4xl">Masterplan snapshot</h2>
+        <Prose>
+          <p className="mt-5">
+            The Town filing mixes detached dwellings with several townhouse types and apartments. Sundial Homes has priced only the freehold townhomes so far. The snapshot below keeps that difference visible.
+          </p>
+        </Prose>
+        <div className="mt-6">
+          <MasterplanBreakdown condensed />
+        </div>
+        <p className="mt-5">
+          <Link href="/masterplan" className="text-link">
+            See the full masterplan breakdown
+          </Link>
+        </p>
+        <PricingDisclaimer />
+      </Section>
+      <Section alt>
+        <h2 className="text-3xl md:text-4xl">How to read the detached status</h2>
+        <Prose>
+          <div className="mt-5">
+            {howToRead.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </Prose>
+        <PricingDisclaimer />
+      </Section>
+      <Section>
+        <h2 className="text-3xl md:text-4xl">Townhomes already released, detached homes not</h2>
+        <Prose>
+          <div className="mt-5">
+            {townsVersusDetached.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </Prose>
+        <p className="mt-6">
+          <SiblingLink />
+        </p>
+        <PricingDisclaimer />
+      </Section>
+      <Section alt>
+        <h2 className="text-3xl md:text-4xl">About Sundial Homes</h2>
+        <Prose>
+          <div className="mt-5">
+            {aboutSundial.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </Prose>
+      </Section>
+      <Section>
+        <h2 className="text-3xl md:text-4xl">Why register</h2>
+        <Prose>
+          <div className="mt-5">
+            {whyRegister.map((paragraph) => (
+              <p key={paragraph.slice(0, 40)}>{paragraph}</p>
+            ))}
+          </div>
+        </Prose>
+        <ul className="mt-6 flex flex-col gap-3 text-base">
+          <li>
+            <Link href="/location" className="text-link">
+              Explore the Britannia Road &amp; James Snow Parkway location
+            </Link>
+          </li>
+          <li>
+            <Link href="/faq" className="text-link">
+              Read the full FAQ
+            </Link>
+          </li>
+          <li>
+            <Link href="/register" className="text-link">
+              Register for detached collection updates
+            </Link>
+          </li>
+        </ul>
+      </Section>
+      <Section id="register" alt>
+        <h2 className="text-3xl md:text-4xl">Register for detached collection updates</h2>
+        <Prose>
+          <p className="mt-5">
+            The form goes to the detached-home update list for The Enclave at 6071 Fourth Line. It is free. Use the message field if you are asking for a record to be deleted.
+          </p>
+        </Prose>
+        <div className="mt-8 max-w-3xl">
+          <LeadForm pagePath="/" />
+        </div>
+      </Section>
+    </>
   );
 }
