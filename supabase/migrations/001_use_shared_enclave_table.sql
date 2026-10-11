@@ -1,0 +1,15 @@
+-- This site inserts into the existing shared table public.enclave
+-- on Supabase project cfzuypbljirmibmxpabi.
+-- Do not create a second leads table.
+--
+-- Columns written by theenclavedetached.com:
+--   first_name, last_name, email, phone
+--   model          home-type interest, plus budget, buyer type, timeline,
+--                  agent flag, page path, UTM values, and an optional message
+--   collection     Detached Collection
+--   source         theenclavedetached.com
+--   form_name      Detached Collection Registration
+--
+-- The API uses SUPABASE_SERVICE_ROLE_KEY. public.enclave does not allow
+-- anonymous inserts. Consent is required before insert; created_at is the
+-- consent timestamp.

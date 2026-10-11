@@ -1,12 +1,21 @@
 import { NextResponse } from "next/server";
-import { emptyToNull, leadSchema } from "@/lib/schema";
-import { getSupabase } from "@/lib/supabase";
+import { budgetOptions, buyerTypeOptions, emptyToNull, homeTypeOptions, leadSchema, timelineOptions } from "@/lib/schema";
+import { getSupabaseAdmin, LEADS_TABLE } from "@/lib/supabase";
 
 export const runtime = "nodejs";
+
+const FORM_NAME = "Detached Collection Registration";
+const COLLECTION = "Detached Collection";
+const SOURCE = "theenclavedetached.com";
 
 function safePath(path: string) {
   if (!path.startsWith("/") || path.startsWith("//") || path.includes("://")) return "/";
   return path.slice(0, 200);
+}
+
+function labelFor(options: readonly { value: string; label: string }[], value: string | undefined) {
+  if (!value) return null;
+  return options.find((option) => option.value === value)?.label ?? null;
 }
 
 export async function POST(request: Request) {
@@ -34,37 +43,42 @@ export async function POST(request: Request) {
     );
   }
 
-  try {
-    const supabase = getSupabase();
-    const row = {
-      first_name: parsed.data.firstName,
-      last_name: parsed.data.lastName,
-      email: parsed.data.email,
-      phone: parsed.data.phone,
-      is_broker: parsed.data.isBroker,
-      home_type_interest: parsed.data.homeTypeInterest,
-      budget_range: emptyToNull(parsed.data.budgetRange),
-      buyer_type: emptyToNull(parsed.data.buyerType),
-      timeline: emptyToNull(parsed.data.timeline),
-      notes: emptyToNull(parsed.data.message),
-      consent: true,
-      consent_timestamp: new Date().toISOString(),
-      page_path: safePath(parsed.data.pagePath),
-      site_source: "theenclavedetached.com",
-      utm_source: emptyToNull(parsed.data.utm_source),
-      utm_medium: emptyToNull(parsed.data.utm_medium),
-      utm_campaign: emptyToNull(parsed.data.utm_campaign),
-      utm_term: emptyToNull(parsed.data.utm_term),
-      utm_content: emptyToNull(parsed.data.utm_content),
-    };
+  const utm = [
+    emptyToNull(parsed.data.utm_source),
+    emptyToNull(parsed.data.utm_medium),
+    emptyToNull(parsed.data.utm_campaign),
+    emptyToNull(parsed.data.utm_term),
+    emptyToNull(parsed.data.utm_content),
+  ]
+    .filter(Boolean)
+    .join("/");
 
-    let { error } = await supabase.from("enclave_milton_leads").insert(row);
-    if (error && /notes/i.test(error.message)) {
-      const { notes, ...retryRow } = row;
-      void notes;
-      const retry = await supabase.from("enclave_milton_leads").insert(retryRow);
-      error = retry.error;
-    }
+  const model = [
+    labelFor(homeTypeOptions, parsed.data.homeTypeInterest),
+    labelFor(budgetOptions, emptyToNull(parsed.data.budgetRange) ?? undefined),
+    labelFor(buyerTypeOptions, emptyToNull(parsed.data.buyerType) ?? undefined),
+    labelFor(timelineOptions, emptyToNull(parsed.data.timeline) ?? undefined),
+    parsed.data.isBroker ? "Licensed agent" : null,
+    `page ${safePath(parsed.data.pagePath)}`,
+    utm ? `utm ${utm}` : null,
+    emptyToNull(parsed.data.message),
+  ]
+    .filter(Boolean)
+    .join(" · ")
+    .slice(0, 4000);
+
+  try {
+    const supabase = getSupabaseAdmin();
+    const { error } = await supabase.from(LEADS_TABLE).insert({
+      first_name: parsed.data.firstName.trim(),
+      last_name: parsed.data.lastName.trim(),
+      email: parsed.data.email.trim().toLowerCase(),
+      phone: parsed.data.phone.trim(),
+      model,
+      collection: COLLECTION,
+      source: SOURCE,
+      form_name: FORM_NAME,
+    });
 
     if (error) {
       console.error("Lead insert failed", error.message);
