@@ -15,7 +15,15 @@ import { caslConsent } from "@/lib/content";
 import { getStoredUtm } from "@/lib/utm";
 import { trackEvent } from "@/lib/analytics";
 
-export function LeadForm({ pagePath, idPrefix = "" }: { pagePath: string; idPrefix?: string }) {
+export function LeadForm({
+  pagePath,
+  idPrefix = "",
+  compact = false,
+}: {
+  pagePath: string;
+  idPrefix?: string;
+  compact?: boolean;
+}) {
   const fid = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [serverError, setServerError] = useState("");
@@ -99,10 +107,10 @@ export function LeadForm({ pagePath, idPrefix = "" }: { pagePath: string; idPref
     <form
       onSubmit={handleSubmit(onSubmit)}
       noValidate
-      className="card grid gap-5"
+      className={compact ? "card grid gap-3 p-4 sm:p-5" : "card grid gap-5"}
       aria-describedby={fid("form-status")}
     >
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className={compact ? "grid gap-3" : "grid gap-5 md:grid-cols-2"}>
         <Field label="First name" error={errors.firstName?.message} id={fid("firstName")}>
           <input
             id={fid("firstName")}
@@ -124,7 +132,7 @@ export function LeadForm({ pagePath, idPrefix = "" }: { pagePath: string; idPref
           />
         </Field>
       </div>
-      <div className="grid gap-5 md:grid-cols-2">
+      <div className={compact ? "grid gap-3" : "grid gap-5 md:grid-cols-2"}>
         <Field label="Email" error={errors.email?.message} id={fid("email")}>
           <input
             id={fid("email")}
@@ -167,52 +175,56 @@ export function LeadForm({ pagePath, idPrefix = "" }: { pagePath: string; idPref
           ))}
         </select>
       </Field>
-      <div className="grid gap-5 md:grid-cols-2">
-        <Field label="Budget range (optional)" error={errors.budgetRange?.message} id={fid("budgetRange")}>
-          <select id={fid("budgetRange")} className="field-input" defaultValue="" {...register("budgetRange")}>
-            <option value="">Select a range</option>
-            {budgetOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </Field>
-        <Field label="Timeline (optional)" error={errors.timeline?.message} id={fid("timeline")}>
-          <select id={fid("timeline")} className="field-input" defaultValue="" {...register("timeline")}>
-            <option value="">Select a timeline</option>
-            {timelineOptions.map((option) => (
-              <option key={option.value} value={option.value}>
-                {option.label}
-              </option>
-            ))}
-          </select>
-        </Field>
-      </div>
-      <fieldset>
-        <legend className="field-label">Buyer type (optional)</legend>
-        <div className="flex flex-wrap gap-4">
-          {buyerTypeOptions.map((option) => (
-            <label key={option.value} className="flex items-center gap-2 text-base">
-              <input type="radio" value={option.value} {...register("buyerType")} name={fid("buyerType")} />
-              {option.label}
-            </label>
-          ))}
-        </div>
-      </fieldset>
-      <Field label="Message (optional)" error={errors.message?.message} id={fid("message")}>
-        <textarea
-          id={fid("message")}
-          rows={3}
-          className="field-input"
-          placeholder="Deletion requests can be written here."
-          {...register("message")}
-        />
-      </Field>
-      <label className="flex items-start gap-3 text-base leading-snug">
-        <input type="checkbox" className="mt-1" {...register("isBroker")} />
-        <span>Are you a licensed real estate agent?</span>
-      </label>
+      {compact ? null : (
+        <>
+          <div className="grid gap-5 md:grid-cols-2">
+            <Field label="Budget range (optional)" error={errors.budgetRange?.message} id={fid("budgetRange")}>
+              <select id={fid("budgetRange")} className="field-input" defaultValue="" {...register("budgetRange")}>
+                <option value="">Select a range</option>
+                {budgetOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </Field>
+            <Field label="Timeline (optional)" error={errors.timeline?.message} id={fid("timeline")}>
+              <select id={fid("timeline")} className="field-input" defaultValue="" {...register("timeline")}>
+                <option value="">Select a timeline</option>
+                {timelineOptions.map((option) => (
+                  <option key={option.value} value={option.value}>
+                    {option.label}
+                  </option>
+                ))}
+              </select>
+            </Field>
+          </div>
+          <fieldset>
+            <legend className="field-label">Buyer type (optional)</legend>
+            <div className="flex flex-wrap gap-4">
+              {buyerTypeOptions.map((option) => (
+                <label key={option.value} className="flex items-center gap-2 text-base">
+                  <input type="radio" value={option.value} {...register("buyerType")} name={fid("buyerType")} />
+                  {option.label}
+                </label>
+              ))}
+            </div>
+          </fieldset>
+          <Field label="Message (optional)" error={errors.message?.message} id={fid("message")}>
+            <textarea
+              id={fid("message")}
+              rows={3}
+              className="field-input"
+              placeholder="Deletion requests can be written here."
+              {...register("message")}
+            />
+          </Field>
+          <label className="flex items-start gap-3 text-base leading-snug">
+            <input type="checkbox" className="mt-1" {...register("isBroker")} />
+            <span>Are you a licensed real estate agent?</span>
+          </label>
+        </>
+      )}
       <div>
         <label className="flex items-start gap-3 text-base leading-snug">
           <input

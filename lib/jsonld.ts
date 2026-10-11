@@ -19,7 +19,7 @@ export function residenceJsonLd() {
     "@type": "Residence",
     name: project.siteName,
     description:
-      "A planned detached-home component within Sundial Homes' 1,094-unit Enclave masterplan community at 6071 Fourth Line, Milton, Ontario, approved under Town of Milton file 24T-21006/M. Pricing and launch date not yet announced.",
+      "Detached Homes releasing soon within Sundial Homes' 1,094-unit Enclave masterplan community at 6071 Fourth Line, Milton, Ontario, under Town of Milton file 24T-21006/M. Pricing is coming soon.",
     address: {
       "@type": "PostalAddress",
       streetAddress: project.streetAddress,

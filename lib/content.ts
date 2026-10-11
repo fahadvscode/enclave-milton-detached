@@ -43,12 +43,11 @@ export const project = {
   townFile: "24T-21006/M",
   totalUnits: "approximately 1,094",
   totalUnitsLabel: "~1,094",
-  detachedStatus:
-    "approved in the masterplan — not yet priced, named, or launched",
-  detachedStatusShort: "Approved in masterplan — not yet released or priced",
+  detachedStatus: "Releasing soon",
+  detachedStatusShort: "Releasing soon",
   applicationStatus:
     "Undergoing technical review by Town of Milton staff and reviewing agencies",
-  heroBadge: "Masterplan Approved — Detached Pricing Not Yet Released",
+  heroBadge: "Detached Homes — Releasing Soon",
   releasedProduct: {
     type: "freehold townhomes",
     collections: [
@@ -75,7 +74,7 @@ export function formatCad(amount: number) {
 
 export const startingTownPrice = formatCad(project.releasedProduct.startingPrice);
 
-export const toBeAnnounced = "To be announced";
+export const toBeAnnounced = "Coming soon";
 
 export const detachedAnnouncements = [
   { field: "Detached dwelling count", value: toBeAnnounced },
@@ -93,30 +92,30 @@ export const pricingDisclaimer =
   "Prices, sizes, specifications, and availability are subject to change without notice. E.&O.E. Information current as of October 2026.";
 
 export const independenceDisclaimer =
-  "This is an independent information and registration website tracking the detached-home component of The Enclave, a masterplan community by Sundial Homes. It is not the official website of Sundial Homes and is not affiliated with or endorsed by the builder. Detached-home pricing, lot sizes, and launch timing have not been released by Sundial Homes as of the date below and are not guaranteed. All renderings, site context imagery, figures, and specifications are for illustration only and are subject to change without notice. E.&O.E.";
+  "This is an independent information and registration website for Detached Homes at The Enclave, a masterplan community by Sundial Homes. It is not the official website of Sundial Homes and is not affiliated with or endorsed by the builder. Detached Homes are releasing soon. Pricing, lot sizes, and timing are not guaranteed. All imagery, figures, and specifications are for illustration only and are subject to change without notice. E.&O.E.";
 
 export const caslConsent =
   "I consent to receive electronic communications about The Enclave and similar pre-construction opportunities. I understand I can withdraw consent at any time using the unsubscribe link in any message.";
 
 export const answerFirstHome =
-  "Detached homes are planned as part of The Enclave, a 1,094-unit masterplan community by Sundial Homes at Britannia Road and James Snow Parkway in Milton, Ontario, approved under Town of Milton file 24T-21006/M. Sundial Homes has released freehold townhomes in this community starting from $599,990, but has not yet announced pricing, lot sizes, or a launch date for the detached product.";
+  "Detached Homes are releasing soon at The Enclave, a 1,094-unit masterplan community by Sundial Homes at Britannia Road and James Snow Parkway in Milton, Ontario, under Town of Milton file 24T-21006/M. Pricing and lot sizes for Detached Homes are coming soon. Freehold townhomes in this community start from $599,990.";
 
 export const answerFirstMasterplan =
-  "The Enclave is a 1,094-unit masterplan community by Sundial Homes at 6071 Fourth Line, Milton, approved under Town of Milton file 24T-21006/M. The approved housing mix includes detached dwellings, street townhouses, rear-lane townhouses, back-to-back units, and apartments. Sundial Homes has released freehold towns so far; detached homes have not yet been priced or launched.";
+  "The Enclave is a 1,094-unit masterplan community by Sundial Homes at 6071 Fourth Line, Milton, under Town of Milton file 24T-21006/M. The housing mix includes Detached Homes, street townhouses, rear-lane townhouses, back-to-back units, and apartments. Detached Homes are releasing soon.";
 
 export const answerFirstLocation =
   "The Enclave sits at the northwest corner of Britannia Road and James Snow Parkway in southeast Milton, Ontario, near the Milton GO Station on the Kitchener line and with direct access to Highway 401. The surrounding area includes Mohawk Park, the Niagara Escarpment trail network, and downtown Milton's Dundas Street retail corridor.";
 
 export const hero = {
-  h1: "Detached Homes at The Enclave — Milton, Ontario",
+  h1: "Detached Homes",
   subhead:
-    "A planned detached-home collection within Sundial Homes' approved 1,094-unit masterplan community at Britannia Road and James Snow Parkway, Milton.",
+    "Releasing soon at The Enclave in Milton, at Britannia Road and James Snow Parkway.",
 } as const;
 
 export const quickFacts = [
   { field: "Builder", value: project.builder },
   { field: "Community", value: "The Enclave (6071 Fourth Line)" },
-  { field: "Detached product status", value: project.detachedStatusShort },
+  { field: "Detached Homes", value: project.detachedStatusShort },
   { field: "Town file", value: project.townFile },
   { field: "Total masterplan units", value: project.totalUnitsLabel },
   { field: "Location", value: "Britannia Road & James Snow Parkway, Milton, ON" },
@@ -131,18 +130,18 @@ export const quickFacts = [
 export const overviewParagraphs = [
   "Sundial Homes holds an active development application with the Town of Milton — file 24T-21006/M — for a large masterplan community at 6071 Fourth Line, on the northwest corner of Britannia Road and James Snow Parkway in southeast Milton. The approved application outlines approximately 1,094 residential dwelling units across a mix of housing types, including detached dwellings, street townhouses, rear-lane-access townhouses, back-to-back townhouse units, and apartment units within a planned high-density block.",
   "Sundial Homes has begun marketing the first phase of this community under the name \"The Enclave.\" That phase, as currently released, consists exclusively of freehold townhomes: a Village Collection of back-to-back towns and a Park Collection of traditional two- and three-storey towns, ranging from 953 to 2,843 square feet and starting from $599,990, with occupancy targeted for 2027.",
-  "The detached-dwelling component named in the Town's approved housing mix has not yet been released as a separate, priced, or branded product. No lot widths, unit sizes, pricing, deposit structure, or launch date have been published by Sundial Homes for the detached portion of this community as of this writing. This site exists to track that release and to give prospective buyers a single, accurate source to register their interest ahead of it.",
+  "Detached Homes at this community are releasing soon. Lot widths, unit sizes, pricing, and a launch date are coming soon. Register here to be among the first to hear those details.",
   "The broader masterplan includes a greenlands channel with trails, a stormwater management pond, a village square, and a site for a public elementary school — amenities that will serve the entire community once built out, detached and townhome phases alike.",
   "The community sits within walking and short driving distance of the Milton GO Station on the Kitchener line to Toronto Union Station, with direct access to Highway 401, placing it within Milton's established and fast-growing southeast residential corridor.",
 ] as const;
 
 export const whyRegister = [
   "Registering is free and takes under a minute. Buyers who register are added to the update list Sundial Homes and its sales team use to notify prospective purchasers when detached-home pricing, floor plans, lot availability, and a release date are announced for this community. Registration does not commit you to a purchase and does not require a deposit.",
-  "There is no detached inventory to hold, count, or discount today. A registration is a request to be told when Sundial Homes publishes the missing details. It does not reserve a lot, a price, or a place in a lineup, because no detached release has been announced.",
+  "Registration is a request to hear about Detached Homes as they release. It does not reserve a lot, a price, or a place in a lineup.",
 ] as const;
 
 export const budgetNote =
-  "Detached pricing has not been released, so this page cannot say whether those homes will be offered under $1.5 million or at any other figure. The only published starting price on this community is for the released freehold townhomes, from $599,990.";
+  "Pricing for Detached Homes is coming soon, so this page does not quote a detached price. The published starting price on this community for freehold townhomes is from $599,990.";
 
 export const aboutSundial = [
   "Sundial Homes is the applicant named on Town of Milton file 24T-21006/M for 6071 Fourth Line. That is the public-record basis for identifying Sundial Homes as the developer of this masterplan. Sundial Homes is also the builder currently marketing The Enclave freehold townhomes — the Village Collection and the Park Collection — at the same Britannia Road location.",
@@ -153,8 +152,8 @@ export const housingMix = [
   {
     type: "Detached dwellings",
     approved: "Yes",
-    released: "No",
-    status: "Not yet priced or launched",
+    released: "Releasing soon",
+    status: "Detached Homes",
     registerLink: true,
   },
   {
@@ -223,7 +222,7 @@ export const housingTypeNotes = [
     title: "Back-to-back townhouses",
     paragraphs: [
       `Back-to-back townhouses share a rear wall as well as side walls. Sundial Homes has released this form at The Enclave as the Village Collection, within the freehold townhome range of ${project.releasedProduct.sizeRangeLong}, starting from ${startingTownPrice}, with no monthly maintenance fee on that freehold collection.`,
-      "Those figures describe the released townhomes. They are not a proxy for the unreleased detached homes. Occupancy for the released town phase is targeted for 2027.",
+      "Those figures describe the townhomes. They are not a proxy for Detached Homes. Occupancy for the town phase is targeted for 2027.",
     ],
   },
   {
@@ -444,7 +443,7 @@ export const faqs: { question: string; answer: string; registerCta: boolean }[] 
   {
     question: "What is The Enclave detached collection in Milton?",
     answer:
-      "The Enclave's detached collection is a planned, not-yet-released group of detached homes within Sundial Homes' 1,094-unit masterplan community at 6071 Fourth Line in Milton, Ontario, approved under Town of Milton file 24T-21006/M. No pricing, lot sizes, or launch date have been announced as of October 2026.",
+      "Detached Homes at The Enclave are releasing soon within Sundial Homes' 1,094-unit masterplan community at 6071 Fourth Line in Milton, Ontario, under Town of Milton file 24T-21006/M. Pricing and lot sizes are coming soon as of October 2026.",
     registerCta: true,
   },
   {
@@ -456,13 +455,13 @@ export const faqs: { question: string; answer: string; registerCta: boolean }[] 
   {
     question: "How much do detached homes at The Enclave cost?",
     answer:
-      "Pricing for detached homes at The Enclave has not been released by Sundial Homes as of October 2026. The builder's released freehold townhomes in the same community start from $599,990. Registering on this site notifies buyers as soon as detached pricing is announced.",
+      "Pricing for Detached Homes at The Enclave is coming soon as of October 2026. Freehold townhomes in the same community start from $599,990. Registering on this site notifies buyers as detached pricing is announced.",
     registerCta: true,
   },
   {
     question: "When will Sundial Homes release detached homes at The Enclave?",
     answer:
-      "No launch date has been announced for the detached component of The Enclave. Sundial Homes has so far released only freehold townhomes in this Milton community, with occupancy targeted for 2027. Registered buyers receive priority notice when detached details are confirmed.",
+      "Detached Homes at The Enclave are releasing soon. A calendar date is coming soon. Freehold townhomes in this Milton community have occupancy targeted for 2027. Registered buyers receive notice as detached details are confirmed.",
     registerCta: true,
   },
   {
@@ -474,7 +473,7 @@ export const faqs: { question: string; answer: string; registerCta: boolean }[] 
   {
     question: "What home types are planned at The Enclave?",
     answer:
-      "The Enclave's Town of Milton-approved housing mix includes detached dwellings, street townhouses, rear-lane-access townhouses, back-to-back townhouses, and apartment units, totalling approximately 1,094 units. Sundial Homes has released only the freehold townhome portion — a Village and a Park Collection — as of October 2026.",
+      "The Enclave's Town of Milton housing mix includes Detached Homes, street townhouses, rear-lane-access townhouses, back-to-back townhouses, and apartment units, totalling approximately 1,094 units. Detached Homes are releasing soon. Sundial Homes is marketing a Village and a Park Collection of freehold townhomes as of October 2026.",
     registerCta: false,
   },
   {
@@ -540,8 +539,8 @@ export const images = {
     src: "/images/enclave-detached-hero.webp",
     width: 2400,
     height: 1350,
-    alt: "A detached home on a residential street, with neighboring detached houses visible, used as illustrative background imagery. This is not a photograph of 6071 Fourth Line and not a Sundial Homes rendering.",
-    name: "Illustrative detached-home community street",
+    alt: "A generated view of a detached-home community street, with several detached houses on their own lots. This is not a photograph of 6071 Fourth Line and not a Sundial Homes rendering.",
+    name: "Detached Homes community",
   },
   context: {
     src: "/images/enclave-masterplan-site-context.webp",
@@ -703,11 +702,11 @@ export const navItems = [
 ] as const;
 
 export const howToRead = [
-  "Start with the status line, not with a price. Detached homes at The Enclave are named in the Town of Milton housing mix for 6071 Fourth Line and they are not a released, priced collection. The freehold townhomes Sundial Homes is marketing — Village back-to-back towns and Park two- and three-storey towns — are a separate product, from $599,990, at 953 to 2,843 square feet, with occupancy targeted for 2027.",
+  "Detached Homes at The Enclave are releasing soon. They are part of the Town of Milton housing mix for 6071 Fourth Line. Pricing is coming soon. The freehold townhomes Sundial Homes is marketing — Village back-to-back towns and Park two- and three-storey towns — are a separate product, from $599,990, at 953 to 2,843 square feet, with occupancy targeted for 2027.",
   "Three documents matter, and they answer different questions. The Town of Milton Ward 3 development applications page answers what the municipality is reviewing under file 24T-21006/M. Sundial Homes' Enclave marketing answers what is actually being offered for the townhome phase. This site answers the gap between those two: the detached dwellings in the filing that do not yet have a price, a lot width, or a launch date.",
-  "If a number is missing, it is missing on purpose. Detached count, lot width, floor area, bedrooms, bathrooms, price, deposit, incentives, collection name, and launch date all read \"to be announced.\" Filling any of those with a townhome figure would describe the wrong home. The townhome starting price is printed only where the sentence is about townhomes.",
+  "Detached count, lot width, floor area, bedrooms, bathrooms, price, deposit, incentives, and a launch date read \"coming soon.\" Filling any of those with a townhome figure would describe the wrong home. The townhome starting price is printed only where the sentence is about townhomes.",
   "File status and sales status are also different. As of October 2026 the Town described file 24T-21006/M as undergoing technical review by Town staff and reviewing agencies. That is not final approval, and it is not a grand opening. A buyer can register interest in detached updates without treating the file as a finished approval or as a house that can be purchased this week.",
-  "The pictures on this site include an illustrative detached-home street photograph, an open-meadow photograph, and a labeled intersection diagram. They are not Sundial Homes renderings, they are not photographs of 6071 Fourth Line, and they are not a picture of the finished Enclave community. No detached elevation has been published for this page to show.",
+  "The hero shows a generated detached-home community, with several houses on their own lots. It is not a Sundial Homes rendering and it is not a photograph of 6071 Fourth Line.",
 ] as const;
 
 export const questionsToAsk = [
@@ -732,8 +731,8 @@ export const miltonContext = [
 
 export const townsVersusDetached = [
   "The released Enclave product is freehold townhomes. Freehold, on the Village and Park collections, means Sundial Homes is marketing those towns with no monthly maintenance fee. The Village Collection is back-to-back towns. The Park Collection is traditional two- and three-storey towns. Together they run from 953 to 2,843 square feet and start from $599,990, with occupancy targeted for 2027. Registration for that town phase is open, in limited release phases, on the separate townhome site.",
-  "A detached house on the same masterplan would not share a wall with a neighbour. That is the product this site is tracking. It is in the Town's housing mix. It is not in the current Enclave price list. Using the townhome starting price as a stand-in for a detached price would mislead someone who is comparing house types.",
-  "The Town mix is wider than the two collections. It also names street townhouses, rear-lane-access townhouses, and apartment units in a high-density block, inside a total of approximately 1,094 residential units. Street and rear-lane towns have not been matched to a named Sundial Homes collection. Apartments have not been released. Detached homes have not been priced or launched.",
+  "Detached Homes do not share a wall with a neighbour. They are releasing soon at this masterplan. Using the townhome starting price as a stand-in for a detached price would describe the wrong home.",
+  "The Town mix is wider than the two townhome collections. It also names street townhouses, rear-lane-access townhouses, and apartment units in a high-density block, inside a total of approximately 1,094 residential units. Detached Homes are releasing soon.",
   "Someone who wants a townhome today can use the sibling site for The Enclave's released freehold towns. Someone who wants a detached house at this masterplan is early. The honest offer is notice, not a lot number.",
 ] as const;
 

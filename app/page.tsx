@@ -54,15 +54,15 @@ export default function HomePage() {
         <PricingDisclaimer />
       </Section>
       <Section alt>
-        <h2 className="text-3xl md:text-4xl">Detached details still to be announced</h2>
+        <h2 className="text-3xl md:text-4xl">Detached Homes</h2>
         <Prose>
           <p className="mt-5">
-            Sundial Homes has not published a detached count, lot width, unit size, bedroom count, price, deposit, incentive, launch date, or collection name for this Milton community. Those fields are listed as to be announced. They are not omitted, and they are not filled with a guess.
+            Detached Homes are releasing soon. Count, lot width, unit size, bedroom count, price, deposit, incentives, and a launch date are listed as coming soon.
           </p>
         </Prose>
         <div className="mt-6 overflow-x-auto">
           <table className="data-table">
-            <caption className="sr-only">Detached-home details that Sundial Homes has not released</caption>
+            <caption className="sr-only">Detached Homes details that are coming soon</caption>
             <thead>
               <tr>
                 <th scope="col">Detached detail</th>
@@ -114,7 +114,7 @@ export default function HomePage() {
         <PricingDisclaimer />
       </Section>
       <Section>
-        <h2 className="text-3xl md:text-4xl">Townhomes already released, detached homes not</h2>
+        <h2 className="text-3xl md:text-4xl">Detached Homes and townhomes</h2>
         <Prose>
           <div className="mt-5">
             {townsVersusDetached.map((paragraph) => (
