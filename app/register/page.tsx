@@ -1,3 +1,4 @@
+import { AmpLink } from "@/components/AmpLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { LeadForm } from "@/components/LeadForm";
 import { Breadcrumbs, JsonLd, PricingDisclaimer, Prose, Section } from "@/components/ui";
@@ -17,6 +18,7 @@ export default function RegisterPage() {
 
   return (
     <>
+      <AmpLink path="/register" />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <Section className="py-12 md:py-16 lg:py-20">
         <Breadcrumbs items={crumbs} />

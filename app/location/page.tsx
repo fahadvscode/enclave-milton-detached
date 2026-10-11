@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AmpLink } from "@/components/AmpLink";
 import { AnswerFirstSummary } from "@/components/AnswerFirstSummary";
 import { LeadForm } from "@/components/LeadForm";
 import { LocationMap } from "@/components/LocationMap";
@@ -29,6 +30,7 @@ const crumbs = [
 export default function LocationPage() {
   return (
     <>
+      <AmpLink path="/location" />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd data={imageObjectJsonLd(images.map)} />
       <Section>

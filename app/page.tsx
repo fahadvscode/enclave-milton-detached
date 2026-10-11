@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AmpLink } from "@/components/AmpLink";
 import { AnswerFirstSummary } from "@/components/AnswerFirstSummary";
 import { Hero } from "@/components/Hero";
 import { LeadForm } from "@/components/LeadForm";
@@ -24,6 +25,7 @@ export const metadata = buildMetadata(pageMeta.home);
 export default function HomePage() {
   return (
     <>
+      <AmpLink path="/" />
       <JsonLd data={residenceJsonLd()} />
       <JsonLd data={breadcrumbJsonLd([{ name: "Home", path: "/" }])} />
       <JsonLd data={heroImageJsonLd} />

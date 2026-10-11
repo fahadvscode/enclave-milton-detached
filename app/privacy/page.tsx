@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { AmpLink } from "@/components/AmpLink";
 import { Breadcrumbs, Prose, Section } from "@/components/ui";
 import { pageMeta, privacySections, site } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -13,6 +14,7 @@ const crumbs = [
 export default function PrivacyPage() {
   return (
     <Section>
+      <AmpLink path="/privacy" />
       <Breadcrumbs items={crumbs} />
       <h1 className="text-4xl md:text-5xl">Privacy Policy</h1>
       <p className="mt-3 text-text-muted">Last updated: {site.asOfDate}</p>

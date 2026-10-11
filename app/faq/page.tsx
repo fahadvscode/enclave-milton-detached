@@ -1,3 +1,4 @@
+import { AmpLink } from "@/components/AmpLink";
 import { FaqAccordion } from "@/components/FaqAccordion";
 import { Breadcrumbs, JsonLd, PricingDisclaimer, Prose, Section } from "@/components/ui";
 import { pageMeta } from "@/lib/content";
@@ -14,6 +15,7 @@ const crumbs = [
 export default function FaqPage() {
   return (
     <>
+      <AmpLink path="/faq" />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd data={faqPageJsonLd()} />
       <Section>

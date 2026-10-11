@@ -1,5 +1,6 @@
 import Image from "next/image";
 import Link from "next/link";
+import { AmpLink } from "@/components/AmpLink";
 import { AnswerFirstSummary } from "@/components/AnswerFirstSummary";
 import { LeadForm } from "@/components/LeadForm";
 import { MasterplanBreakdown } from "@/components/MasterplanBreakdown";
@@ -30,6 +31,7 @@ const crumbs = [
 export default function MasterplanPage() {
   return (
     <>
+      <AmpLink path="/masterplan" />
       <JsonLd data={breadcrumbJsonLd(crumbs)} />
       <JsonLd data={imageObjectJsonLd(images.context)} />
       <Section>

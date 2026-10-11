@@ -1,3 +1,4 @@
+import { AmpLink } from "@/components/AmpLink";
 import { Breadcrumbs, Prose, Section } from "@/components/ui";
 import { pageMeta, site, termsSections } from "@/lib/content";
 import { buildMetadata } from "@/lib/seo";
@@ -12,6 +13,7 @@ const crumbs = [
 export default function TermsPage() {
   return (
     <Section>
+      <AmpLink path="/terms" />
       <Breadcrumbs items={crumbs} />
       <h1 className="text-4xl md:text-5xl">Terms of Use</h1>
       <p className="mt-3 text-text-muted">Last updated: {site.asOfDate}</p>
