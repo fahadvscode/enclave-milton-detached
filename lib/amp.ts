@@ -482,7 +482,7 @@ function formHtml(pagePath: string, utm: AmpUtm, compact: boolean) {
   return `<form class="card" method="post" action-xhr="${site.url}/api/lead" target="_top">
 <div class="pair"><div><label for="firstName">First name</label><input id="firstName" name="firstName" type="text" autocomplete="given-name" required></div><div><label for="lastName">Last name</label><input id="lastName" name="lastName" type="text" autocomplete="family-name" required></div></div>
 <div class="pair"><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div></div>
-<fieldset><legend>Are you a broker?</legend><div class="choices"><label><input type="radio" name="isBroker" value="yes" required> yes</label><label><input type="radio" name="isBroker" value="no"> no</label></div></fieldset>
+<fieldset><legend>Are you a broker?</legend><div class="choices"><label><input type="radio" name="isBroker" value="yes" required> yes</label><label><input type="radio" name="isBroker" value="no" required> no</label></div></fieldset>
 ${extra}
 <label class="choices"><input type="checkbox" name="consent" value="true" required> <span>${esc(caslConsent)}</span></label>
 <div class="hp"><label for="honeypot">Company website</label><input id="honeypot" name="honeypot" type="text" tabindex="-1" autocomplete="off"></div>

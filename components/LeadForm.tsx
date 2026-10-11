@@ -165,7 +165,14 @@ export function LeadForm({
                 aria-invalid={Boolean(errors.isBroker)}
                 {...register("isBroker")}
                 name={fid("isBroker")}
-                onFocus={markStart}
+                onChange={() => {
+                  markStart();
+                  setValue("isBroker", value, {
+                    shouldValidate: true,
+                    shouldDirty: true,
+                    shouldTouch: true,
+                  });
+                }}
               />
               {value}
             </label>
@@ -202,7 +209,15 @@ export function LeadForm({
             <div className="flex flex-wrap gap-4">
               {buyerTypeOptions.map((option) => (
                 <label key={option.value} className="flex items-center gap-2 text-base">
-                  <input type="radio" value={option.value} {...register("buyerType")} name={fid("buyerType")} />
+                  <input
+                    type="radio"
+                    value={option.value}
+                    {...register("buyerType")}
+                    name={fid("buyerType")}
+                    onChange={() => {
+                      setValue("buyerType", option.value, { shouldDirty: true, shouldTouch: true });
+                    }}
+                  />
                   {option.label}
                 </label>
               ))}
