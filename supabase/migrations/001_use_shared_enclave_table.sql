@@ -10,6 +10,7 @@
 --   source         theenclavedetached.com
 --   form_name      Detached Collection Registration
 --
--- The API uses SUPABASE_SERVICE_ROLE_KEY. public.enclave does not allow
--- anonymous inserts. Consent is required before insert; created_at is the
--- consent timestamp.
+-- The API uses NEXT_PUBLIC_SUPABASE_ANON_KEY.
+-- Anonymous insert is allowed by 002_allow_anon_insert.sql.
+-- There is no select policy, so the anon key cannot read leads.
+-- Consent is required before insert; created_at is the consent timestamp.

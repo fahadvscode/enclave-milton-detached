@@ -1,11 +1,11 @@
 import { createClient } from "@supabase/supabase-js";
 
-/** Shared leads table used by The Enclave sites. Inserts require the service role key. */
+/** Shared leads table used by The Enclave sites. Inserts use the anon key. */
 export const LEADS_TABLE = "enclave";
 
-export function getSupabaseAdmin() {
+export function getSupabase() {
   const url = process.env.NEXT_PUBLIC_SUPABASE_URL ?? process.env.SUPABASE_URL;
-  const key = process.env.SUPABASE_SERVICE_ROLE_KEY;
+  const key = process.env.NEXT_PUBLIC_SUPABASE_ANON_KEY ?? process.env.SUPABASE_ANON_KEY;
   if (!url || !key) {
     throw new Error("Supabase environment variables are not configured.");
   }

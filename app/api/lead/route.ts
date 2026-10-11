@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import { budgetOptions, buyerTypeOptions, emptyToNull, leadSchema, timelineOptions } from "@/lib/schema";
-import { getSupabaseAdmin, LEADS_TABLE } from "@/lib/supabase";
+import { getSupabase, LEADS_TABLE } from "@/lib/supabase";
 
 export const runtime = "nodejs";
 
@@ -135,7 +135,7 @@ export async function POST(request: Request) {
     .slice(0, 4000);
 
   try {
-    const supabase = getSupabaseAdmin();
+    const supabase = getSupabase();
     const { error } = await supabase.from(LEADS_TABLE).insert({
       first_name: parsed.data.firstName.trim(),
       last_name: parsed.data.lastName.trim(),
