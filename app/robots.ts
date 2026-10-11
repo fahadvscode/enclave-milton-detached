@@ -18,6 +18,6 @@ export default function robots(): MetadataRoute.Robots {
       { userAgent: "Bingbot", ...allowAll },
       { userAgent: "*", ...allowAll },
     ],
-    sitemap: "https://theenclavedetached.com/sitemap/sitemap.xml",
+    sitemap: "https://theenclavedetached.com/sitemap.xml",
   };
 }

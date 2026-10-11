@@ -9,7 +9,6 @@ const nextConfig: NextConfig = {
   async headers() {
     return [
       { source: "/sitemap.xml", headers: xmlHeaders },
-      { source: "/sitemap/sitemap.xml", headers: xmlHeaders },
     ];
   },
 };
