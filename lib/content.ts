@@ -95,7 +95,7 @@ export const independenceDisclaimer =
   "This is an independent information and registration website for Detached Homes at The Enclave, a masterplan community by Sundial Homes. It is not the official website of Sundial Homes and is not affiliated with or endorsed by the builder. Detached Homes are releasing soon. Pricing, lot sizes, and timing are not guaranteed. All imagery, figures, and specifications are for illustration only and are subject to change without notice. E.&O.E.";
 
 export const caslConsent =
-  "I consent to receive electronic communications about The Enclave and similar pre-construction opportunities. I understand I can withdraw consent at any time using the unsubscribe link in any message.";
+  "I agree to receive updates about Detached Homes. I can unsubscribe at any time.";
 
 export const answerFirstHome =
   "Detached Homes are releasing soon at The Enclave, a 1,094-unit masterplan community by Sundial Homes at Britannia Road and James Snow Parkway in Milton, Ontario, under Town of Milton file 24T-21006/M. Pricing and lot sizes for Detached Homes are coming soon. Freehold townhomes in this community start from $599,990.";
@@ -613,7 +613,7 @@ export const privacySections = [
   {
     heading: null,
     paragraphs: [
-      "This website collects personal information when you submit the registration form, including your first name, last name, email address, phone number, and any optional details you provide about your home-type interest, budget range, buyer type, timeline, and message. We also record whether you identified yourself as a licensed real estate agent, the page you registered from, and standard marketing-attribution data (UTM parameters) associated with your visit.",
+      "This website collects personal information when you submit the registration form, including your first name, last name, email address, phone number, whether you are a broker, and any optional details you provide about budget range, buyer type, timeline, and message. We also record the page you registered from and standard marketing-attribution data (UTM parameters) associated with your visit.",
     ],
   },
   {

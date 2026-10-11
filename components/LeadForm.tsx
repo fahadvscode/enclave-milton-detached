@@ -6,7 +6,6 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import {
   budgetOptions,
   buyerTypeOptions,
-  homeTypeOptions,
   leadSchema,
   timelineOptions,
   type LeadFormValues,
@@ -42,12 +41,11 @@ export function LeadForm({
       lastName: "",
       email: "",
       phone: "",
-      homeTypeInterest: undefined,
       budgetRange: "",
       buyerType: "",
       timeline: "",
       message: "",
-      isBroker: false,
+      isBroker: undefined,
       consent: false,
       honeypot: "",
       submittedAt: Date.now(),
@@ -110,7 +108,7 @@ export function LeadForm({
       className={compact ? "card grid gap-3 p-4 sm:p-5" : "card grid gap-5"}
       aria-describedby={fid("form-status")}
     >
-      <div className={compact ? "grid gap-3" : "grid gap-5 md:grid-cols-2"}>
+      <div className="grid grid-cols-2 gap-3">
         <Field label="First name" error={errors.firstName?.message} id={fid("firstName")}>
           <input
             id={fid("firstName")}
@@ -132,7 +130,7 @@ export function LeadForm({
           />
         </Field>
       </div>
-      <div className={compact ? "grid gap-3" : "grid gap-5 md:grid-cols-2"}>
+      <div className="grid grid-cols-2 gap-3">
         <Field label="Email" error={errors.email?.message} id={fid("email")}>
           <input
             id={fid("email")}
@@ -156,25 +154,25 @@ export function LeadForm({
           />
         </Field>
       </div>
-      <Field label="Home type interest" error={errors.homeTypeInterest?.message} id={fid("homeTypeInterest")}>
-        <select
-          id={fid("homeTypeInterest")}
-          className="field-input"
-          defaultValue=""
-          aria-invalid={Boolean(errors.homeTypeInterest)}
-          {...register("homeTypeInterest")}
-          onFocus={markStart}
-        >
-          <option value="" disabled>
-            Select a home type
-          </option>
-          {homeTypeOptions.map((option) => (
-            <option key={option.value} value={option.value}>
-              {option.label}
-            </option>
+      <fieldset>
+        <legend className="field-label">Are you a broker?</legend>
+        <div className="flex gap-5">
+          {(["yes", "no"] as const).map((value) => (
+            <label key={value} className="flex items-center gap-2 text-base capitalize">
+              <input
+                type="radio"
+                value={value}
+                aria-invalid={Boolean(errors.isBroker)}
+                {...register("isBroker")}
+                name={fid("isBroker")}
+                onFocus={markStart}
+              />
+              {value}
+            </label>
           ))}
-        </select>
-      </Field>
+        </div>
+        {errors.isBroker ? <p className="field-error">{errors.isBroker.message}</p> : null}
+      </fieldset>
       {compact ? null : (
         <>
           <div className="grid gap-5 md:grid-cols-2">
@@ -219,14 +217,10 @@ export function LeadForm({
               {...register("message")}
             />
           </Field>
-          <label className="flex items-start gap-3 text-base leading-snug">
-            <input type="checkbox" className="mt-1" {...register("isBroker")} />
-            <span>Are you a licensed real estate agent?</span>
-          </label>
         </>
       )}
       <div>
-        <label className="flex items-start gap-3 text-base leading-snug">
+        <label className="flex items-start gap-3 text-sm leading-snug">
           <input
             type="checkbox"
             className="mt-1"

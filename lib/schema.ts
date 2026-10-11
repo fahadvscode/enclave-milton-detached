@@ -63,12 +63,11 @@ export const leadSchema = z.object({
       const digits = value.replace(/\D/g, "");
       return digits.length === 10 || (digits.length === 11 && digits.startsWith("1"));
     }, "Enter a valid phone number."),
-  homeTypeInterest: z.enum(homeTypeValues, { message: "Select a home type." }),
   budgetRange: optionalEnum(budgetValues),
   buyerType: optionalEnum(buyerTypeValues),
   timeline: optionalEnum(timelineValues),
   message: z.string().trim().max(1000, "Message must be under 1,000 characters.").optional(),
-  isBroker: z.boolean(),
+  isBroker: z.enum(["yes", "no"], { message: "Select yes or no." }),
   consent: z.boolean().refine((value) => value === true, {
     message: "Consent is required to register.",
   }),

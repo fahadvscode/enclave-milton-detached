@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { budgetOptions, buyerTypeOptions, emptyToNull, homeTypeOptions, leadSchema, timelineOptions } from "@/lib/schema";
+import { budgetOptions, buyerTypeOptions, emptyToNull, leadSchema, timelineOptions } from "@/lib/schema";
 import { getSupabaseAdmin, LEADS_TABLE } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -54,11 +54,11 @@ export async function POST(request: Request) {
     .join("/");
 
   const model = [
-    labelFor(homeTypeOptions, parsed.data.homeTypeInterest),
+    "Detached Homes",
+    parsed.data.isBroker === "yes" ? "Broker" : "Not a broker",
     labelFor(budgetOptions, emptyToNull(parsed.data.budgetRange) ?? undefined),
     labelFor(buyerTypeOptions, emptyToNull(parsed.data.buyerType) ?? undefined),
     labelFor(timelineOptions, emptyToNull(parsed.data.timeline) ?? undefined),
-    parsed.data.isBroker ? "Licensed agent" : null,
     `page ${safePath(parsed.data.pagePath)}`,
     utm ? `utm ${utm}` : null,
     emptyToNull(parsed.data.message),
