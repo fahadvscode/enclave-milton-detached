@@ -42,7 +42,7 @@ import {
   transitRows,
   whyRegister,
 } from "@/lib/content";
-import { budgetOptions, buyerTypeOptions, timelineOptions } from "@/lib/schema";
+import { DETACHED_MODEL } from "@/lib/schema";
 import {
   breadcrumbJsonLd,
   faqPageJsonLd,
@@ -95,14 +95,6 @@ footer p{font-family:Arial,Helvetica,sans-serif;font-size:.95rem}
 @media (max-width:640px){.pair{grid-template-columns:1fr}h1{font-size:2rem}}
 `.replace(/\n/g, "");
 
-export type AmpUtm = {
-  utm_source: string;
-  utm_medium: string;
-  utm_campaign: string;
-  utm_term: string;
-  utm_content: string;
-};
-
 type AmpPage = {
   title: string;
   description: string;
@@ -113,14 +105,14 @@ type AmpPage = {
   usesAccordion: boolean;
 };
 
-export function renderAmp(slug: string[] | undefined, utm: AmpUtm) {
+export function renderAmp(slug: string[] | undefined) {
   const key = !slug || slug.length === 0 ? "home" : slug.length === 1 ? slug[0] : "";
-  const page = pages(utm)[key];
+  const page = pages()[key];
   if (!page) return null;
   return document(page);
 }
 
-function pages(utm: AmpUtm): Record<string, AmpPage> {
+function pages(): Record<string, AmpPage> {
   return {
     home: {
       ...meta("home"),
@@ -128,7 +120,7 @@ function pages(utm: AmpUtm): Record<string, AmpPage> {
       usesAccordion: false,
       jsonLd: [websiteJsonLd, organizationJsonLd, residenceJsonLd(), breadcrumbJsonLd([{ name: "Home", path: "/" }]), heroImageJsonLd],
       body: [
-        heroBlock(utm),
+        heroBlock(),
         section(`<p>${esc(answerFirstHome)}</p>`),
         section(factsTable(), "Quick facts", true),
         section(paragraphs(overviewParagraphs) + sibling(), "Project overview"),
@@ -183,7 +175,7 @@ function pages(utm: AmpUtm): Record<string, AmpPage> {
           "Community features",
         ),
         section(`<p>${esc(sourceCitation)}</p>${paragraphs(questionsToAsk)}`, "Questions to ask", true),
-        section(formHtml("/masterplan", utm, false), "Register for detached collection updates"),
+        section(formHtml("/masterplan"), "Register for detached collection updates"),
       ].join(""),
     },
     location: {
@@ -236,7 +228,7 @@ function pages(utm: AmpUtm): Record<string, AmpPage> {
             .join("")}</ul>`,
           "Other Milton communities",
         ),
-        section(formHtml("/location", utm, false), "Register for detached collection updates", true),
+        section(formHtml("/location"), "Register for detached collection updates", true),
       ].join(""),
     },
     faq: {
@@ -277,7 +269,7 @@ function pages(utm: AmpUtm): Record<string, AmpPage> {
           ["Register", "/register"],
         ]),
         section(
-          `<h1>Register for The Enclave — Detached Collection Updates</h1><p>${esc(answerFirstHome)}</p>${disclaimer()}${formHtml("/register", utm, false)}`,
+          `<h1>Register for The Enclave — Detached Collection Updates</h1><p>${esc(answerFirstHome)}</p>${disclaimer()}${formHtml("/register")}`,
         ),
         section(accordion(registerFaqIndexes.map((index) => faqs[index])), "Registration questions", true),
       ].join(""),
@@ -390,8 +382,8 @@ function footer() {
   return `<footer><div class="wrap"><p>${esc(project.siteName)}</p><span class="rule"></span><p>${esc(independenceDisclaimer)}</p><p>Last updated: ${esc(site.asOfDate)}</p><nav>${links}</nav></div></footer>`;
 }
 
-function heroBlock(utm: AmpUtm) {
-  return `<section><div class="wrap hero-copy"><p class="badge">${esc(project.heroBadge)}</p><h1>${esc(hero.h1)}</h1><p>${esc(hero.subhead)}</p></div>${ampImg(images.hero)}<div class="wrap">${formHtml("/", utm, true)}${disclaimer()}</div></section>`;
+function heroBlock() {
+  return `<section><div class="wrap hero-copy"><p class="badge">${esc(project.heroBadge)}</p><h1>${esc(hero.h1)}</h1><p>${esc(hero.subhead)}</p></div>${ampImg(images.hero)}<div class="wrap">${formHtml("/")}${disclaimer()}</div></section>`;
 }
 
 function section(body: string, title = "", alt = false) {
@@ -463,32 +455,16 @@ function accordion(items: readonly { question: string; answer: string }[]) {
     .join("")}</amp-accordion>`;
 }
 
-function formHtml(pagePath: string, utm: AmpUtm, compact: boolean) {
-  const options = (name: string, label: string, values: readonly { value: string; label: string }[]) =>
-    `<label for="${name}">${esc(label)}</label><select id="${name}" name="${name}"><option value="">Select</option>${values
-      .map((option) => `<option value="${esc(option.value)}">${esc(option.label)}</option>`)
-      .join("")}</select>`;
-  const extra = compact
-    ? ""
-    : `<div class="pair">${options("budgetRange", "Budget range (optional)", budgetOptions)}${options("timeline", "Timeline (optional)", timelineOptions)}</div><fieldset><legend>Buyer type (optional)</legend><div class="choices">${buyerTypeOptions
-        .map(
-          (option) =>
-            `<label><input type="radio" name="buyerType" value="${esc(option.value)}"> ${esc(option.label)}</label>`,
-        )
-        .join("")}</div></fieldset><label for="message">Message (optional)</label><textarea id="message" name="message" rows="3"></textarea>`;
-  const hidden = (["utm_source", "utm_medium", "utm_campaign", "utm_term", "utm_content"] as const)
-    .map((key) => `<input type="hidden" name="${key}" value="${esc(utm[key])}">`)
-    .join("");
+function formHtml(pagePath: string) {
   return `<form class="card" method="post" action-xhr="${site.url}/api/lead" target="_top">
 <div class="pair"><div><label for="firstName">First name</label><input id="firstName" name="firstName" type="text" autocomplete="given-name" required></div><div><label for="lastName">Last name</label><input id="lastName" name="lastName" type="text" autocomplete="family-name" required></div></div>
-<div class="pair"><div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div><div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div></div>
-<fieldset><legend>Are you a broker?</legend><div class="choices"><label><input type="radio" name="isBroker" value="yes" required> yes</label><label><input type="radio" name="isBroker" value="no" required> no</label></div></fieldset>
-${extra}
-<label class="choices"><input type="checkbox" name="consent" value="true" required> <span>${esc(caslConsent)}</span></label>
+<div><label for="email">Email</label><input id="email" name="email" type="email" autocomplete="email" required></div>
+<div><label for="phone">Phone</label><input id="phone" name="phone" type="tel" autocomplete="tel" required></div>
+<div><label for="model">Model</label><select id="model" name="model" required><option value="${esc(DETACHED_MODEL)}">${esc(DETACHED_MODEL)}</option></select></div>
 <div class="hp"><label for="honeypot">Company website</label><input id="honeypot" name="honeypot" type="text" tabindex="-1" autocomplete="off"></div>
 <input type="hidden" name="pagePath" value="${esc(pagePath)}">
-${hidden}
 <button type="submit">Register for Updates</button>
+<p class="note">${esc(caslConsent)}</p>
 <div submitting><p>Sending…</p></div>
 <div submit-success><p>Registration received.</p></div>
 <div submit-error><p>Check the form and try again.</p></div>

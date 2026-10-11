@@ -95,7 +95,7 @@ export const independenceDisclaimer =
   "This is an independent information and registration website for Detached Homes at The Enclave, a masterplan community by Sundial Homes. It is not the official website of Sundial Homes and is not affiliated with or endorsed by the builder. Detached Homes are releasing soon. Pricing, lot sizes, and timing are not guaranteed. All imagery, figures, and specifications are for illustration only and are subject to change without notice. E.&O.E.";
 
 export const caslConsent =
-  "I agree to receive updates about Detached Homes. I can unsubscribe at any time.";
+  "By registering, you agree to receive updates about Detached Homes. You can unsubscribe at any time.";
 
 export const answerFirstHome =
   "Detached Homes are releasing soon at The Enclave, a 1,094-unit masterplan community by Sundial Homes at Britannia Road and James Snow Parkway in Milton, Ontario, under Town of Milton file 24T-21006/M. Pricing and lot sizes for Detached Homes are coming soon. Freehold townhomes in this community start from $599,990.";
@@ -613,7 +613,7 @@ export const privacySections = [
   {
     heading: null,
     paragraphs: [
-      "This website collects personal information when you submit the registration form, including your first name, last name, email address, phone number, whether you are a broker, and any optional details you provide about budget range, buyer type, timeline, and message. We also record the page you registered from and standard marketing-attribution data (UTM parameters) associated with your visit.",
+      "This website collects personal information when you submit the registration form: first name, last name, email address, phone number, and model. Collection, source, and form name are stored with that registration.",
     ],
   },
   {
@@ -637,7 +637,7 @@ export const privacySections = [
   {
     heading: "Requesting deletion",
     paragraphs: [
-      "To request that your information be deleted, use the registration form and write \"deletion request\" in the optional message field, together with the email address you used to register. That form is the contact channel for this site. We will process deletion requests within a reasonable time and confirm once complete.",
+      "To request that your information be deleted, submit the registration form using the email address you used to register. That form is the contact channel for this site. We will process deletion requests within a reasonable time and confirm once complete.",
     ],
   },
   {

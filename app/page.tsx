@@ -170,7 +170,7 @@ export default function HomePage() {
         <h2 className="text-3xl md:text-4xl">Register for detached collection updates</h2>
         <Prose>
           <p className="mt-5">
-            The form goes to the detached-home update list for The Enclave at 6071 Fourth Line. It is free. Use the message field if you are asking for a record to be deleted.
+            The form goes to the detached-home update list for The Enclave at 6071 Fourth Line. It is free.
           </p>
         </Prose>
         <div className="mt-8 max-w-3xl">

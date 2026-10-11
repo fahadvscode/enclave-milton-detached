@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { budgetOptions, buyerTypeOptions, emptyToNull, leadSchema, timelineOptions } from "@/lib/schema";
+import { leadSchema } from "@/lib/schema";
 import { getSupabase, LEADS_TABLE } from "@/lib/supabase";
 
 export const runtime = "nodejs";
@@ -52,19 +52,8 @@ async function readBody(request: Request, amp: boolean) {
   for (const [key, value] of form.entries()) {
     if (typeof value === "string") raw[key] = value;
   }
-  raw.consent = raw.consent === "true" || raw.consent === "on";
   raw.submittedAt = Date.now() - 4000;
   return raw;
-}
-
-function safePath(path: string) {
-  if (!path.startsWith("/") || path.startsWith("//") || path.includes("://")) return "/";
-  return path.slice(0, 200);
-}
-
-function labelFor(options: readonly { value: string; label: string }[], value: string | undefined) {
-  if (!value) return null;
-  return options.find((option) => option.value === value)?.label ?? null;
 }
 
 export function OPTIONS(request: Request) {
@@ -110,30 +99,6 @@ export async function POST(request: Request) {
     return respond(request, amp, { error: "Please wait a moment and submit the form again." }, 400);
   }
 
-  const utm = [
-    emptyToNull(parsed.data.utm_source),
-    emptyToNull(parsed.data.utm_medium),
-    emptyToNull(parsed.data.utm_campaign),
-    emptyToNull(parsed.data.utm_term),
-    emptyToNull(parsed.data.utm_content),
-  ]
-    .filter(Boolean)
-    .join("/");
-
-  const model = [
-    "Detached Homes",
-    parsed.data.isBroker === "yes" ? "Broker" : "Not a broker",
-    labelFor(budgetOptions, emptyToNull(parsed.data.budgetRange) ?? undefined),
-    labelFor(buyerTypeOptions, emptyToNull(parsed.data.buyerType) ?? undefined),
-    labelFor(timelineOptions, emptyToNull(parsed.data.timeline) ?? undefined),
-    `page ${safePath(parsed.data.pagePath)}`,
-    utm ? `utm ${utm}` : null,
-    emptyToNull(parsed.data.message),
-  ]
-    .filter(Boolean)
-    .join(" · ")
-    .slice(0, 4000);
-
   try {
     const supabase = getSupabase();
     const { error } = await supabase.from(LEADS_TABLE).insert({
@@ -141,7 +106,7 @@ export async function POST(request: Request) {
       last_name: parsed.data.lastName.trim(),
       email: parsed.data.email.trim().toLowerCase(),
       phone: parsed.data.phone.trim(),
-      model,
+      model: parsed.data.model.trim(),
       collection: COLLECTION,
       source: SOURCE,
       form_name: FORM_NAME,
