@@ -164,7 +164,7 @@ export default function HomePage() {
           </li>
         </ul>
       </Section>
-      <Section id="register" alt>
+      <Section alt>
         <h2 className="text-3xl md:text-4xl">Register for detached collection updates</h2>
         <Prose>
           <p className="mt-5">
@@ -172,7 +172,7 @@ export default function HomePage() {
           </p>
         </Prose>
         <div className="mt-8 max-w-3xl">
-          <LeadForm pagePath="/" />
+          <LeadForm pagePath="/" idPrefix="page" />
         </div>
       </Section>
     </>

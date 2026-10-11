@@ -539,9 +539,9 @@ export const images = {
   hero: {
     src: "/images/enclave-detached-hero.webp",
     width: 2400,
-    height: 1260,
-    alt: "Open farmland at sunset, used as illustrative site-context imagery for The Enclave detached homes in Milton. This is not a photograph of 6071 Fourth Line and not a Sundial Homes rendering.",
-    name: "The Enclave site context — Britannia Road & James Snow Parkway, Milton",
+    height: 1350,
+    alt: "A detached home on a residential street, with neighboring detached houses visible, used as illustrative background imagery. This is not a photograph of 6071 Fourth Line and not a Sundial Homes rendering.",
+    name: "Illustrative detached-home community street",
   },
   context: {
     src: "/images/enclave-masterplan-site-context.webp",
@@ -707,7 +707,7 @@ export const howToRead = [
   "Three documents matter, and they answer different questions. The Town of Milton Ward 3 development applications page answers what the municipality is reviewing under file 24T-21006/M. Sundial Homes' Enclave marketing answers what is actually being offered for the townhome phase. This site answers the gap between those two: the detached dwellings in the filing that do not yet have a price, a lot width, or a launch date.",
   "If a number is missing, it is missing on purpose. Detached count, lot width, floor area, bedrooms, bathrooms, price, deposit, incentives, collection name, and launch date all read \"to be announced.\" Filling any of those with a townhome figure would describe the wrong home. The townhome starting price is printed only where the sentence is about townhomes.",
   "File status and sales status are also different. As of October 2026 the Town described file 24T-21006/M as undergoing technical review by Town staff and reviewing agencies. That is not final approval, and it is not a grand opening. A buyer can register interest in detached updates without treating the file as a finished approval or as a house that can be purchased this week.",
-  "The pictures on this site are illustrative greenfield photographs and a labeled intersection diagram. They are not Sundial Homes renderings, they are not model-home photography, and they are not a photograph of the finished community. No detached elevation has been published for this page to show.",
+  "The pictures on this site include an illustrative detached-home street photograph, an open-meadow photograph, and a labeled intersection diagram. They are not Sundial Homes renderings, they are not photographs of 6071 Fourth Line, and they are not a picture of the finished Enclave community. No detached elevation has been published for this page to show.",
 ] as const;
 
 export const questionsToAsk = [

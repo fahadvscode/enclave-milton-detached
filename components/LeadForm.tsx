@@ -15,7 +15,8 @@ import { caslConsent } from "@/lib/content";
 import { getStoredUtm } from "@/lib/utm";
 import { trackEvent } from "@/lib/analytics";
 
-export function LeadForm({ pagePath }: { pagePath: string }) {
+export function LeadForm({ pagePath, idPrefix = "" }: { pagePath: string; idPrefix?: string }) {
+  const fid = (name: string) => (idPrefix ? `${idPrefix}-${name}` : name);
   const [status, setStatus] = useState<"idle" | "submitting" | "error">("idle");
   const [serverError, setServerError] = useState("");
   const started = useRef(false);
@@ -99,12 +100,12 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
       onSubmit={handleSubmit(onSubmit)}
       noValidate
       className="card grid gap-5"
-      aria-describedby="form-status"
+      aria-describedby={fid("form-status")}
     >
       <div className="grid gap-5 md:grid-cols-2">
-        <Field label="First name" error={errors.firstName?.message} id="firstName">
+        <Field label="First name" error={errors.firstName?.message} id={fid("firstName")}>
           <input
-            id="firstName"
+            id={fid("firstName")}
             className="field-input"
             autoComplete="given-name"
             aria-invalid={Boolean(errors.firstName)}
@@ -112,9 +113,9 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
             onFocus={markStart}
           />
         </Field>
-        <Field label="Last name" error={errors.lastName?.message} id="lastName">
+        <Field label="Last name" error={errors.lastName?.message} id={fid("lastName")}>
           <input
-            id="lastName"
+            id={fid("lastName")}
             className="field-input"
             autoComplete="family-name"
             aria-invalid={Boolean(errors.lastName)}
@@ -124,9 +125,9 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
         </Field>
       </div>
       <div className="grid gap-5 md:grid-cols-2">
-        <Field label="Email" error={errors.email?.message} id="email">
+        <Field label="Email" error={errors.email?.message} id={fid("email")}>
           <input
-            id="email"
+            id={fid("email")}
             type="email"
             className="field-input"
             autoComplete="email"
@@ -135,9 +136,9 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
             onFocus={markStart}
           />
         </Field>
-        <Field label="Phone" error={errors.phone?.message} id="phone">
+        <Field label="Phone" error={errors.phone?.message} id={fid("phone")}>
           <input
-            id="phone"
+            id={fid("phone")}
             type="tel"
             className="field-input"
             autoComplete="tel"
@@ -147,9 +148,9 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
           />
         </Field>
       </div>
-      <Field label="Home type interest" error={errors.homeTypeInterest?.message} id="homeTypeInterest">
+      <Field label="Home type interest" error={errors.homeTypeInterest?.message} id={fid("homeTypeInterest")}>
         <select
-          id="homeTypeInterest"
+          id={fid("homeTypeInterest")}
           className="field-input"
           defaultValue=""
           aria-invalid={Boolean(errors.homeTypeInterest)}
@@ -167,8 +168,8 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
         </select>
       </Field>
       <div className="grid gap-5 md:grid-cols-2">
-        <Field label="Budget range (optional)" error={errors.budgetRange?.message} id="budgetRange">
-          <select id="budgetRange" className="field-input" defaultValue="" {...register("budgetRange")}>
+        <Field label="Budget range (optional)" error={errors.budgetRange?.message} id={fid("budgetRange")}>
+          <select id={fid("budgetRange")} className="field-input" defaultValue="" {...register("budgetRange")}>
             <option value="">Select a range</option>
             {budgetOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -177,8 +178,8 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
             ))}
           </select>
         </Field>
-        <Field label="Timeline (optional)" error={errors.timeline?.message} id="timeline">
-          <select id="timeline" className="field-input" defaultValue="" {...register("timeline")}>
+        <Field label="Timeline (optional)" error={errors.timeline?.message} id={fid("timeline")}>
+          <select id={fid("timeline")} className="field-input" defaultValue="" {...register("timeline")}>
             <option value="">Select a timeline</option>
             {timelineOptions.map((option) => (
               <option key={option.value} value={option.value}>
@@ -193,15 +194,15 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
         <div className="flex flex-wrap gap-4">
           {buyerTypeOptions.map((option) => (
             <label key={option.value} className="flex items-center gap-2 text-base">
-              <input type="radio" value={option.value} {...register("buyerType")} />
+              <input type="radio" value={option.value} {...register("buyerType")} name={fid("buyerType")} />
               {option.label}
             </label>
           ))}
         </div>
       </fieldset>
-      <Field label="Message (optional)" error={errors.message?.message} id="message">
+      <Field label="Message (optional)" error={errors.message?.message} id={fid("message")}>
         <textarea
-          id="message"
+          id={fid("message")}
           rows={3}
           className="field-input"
           placeholder="Deletion requests can be written here."
@@ -218,27 +219,27 @@ export function LeadForm({ pagePath }: { pagePath: string }) {
             type="checkbox"
             className="mt-1"
             aria-invalid={Boolean(errors.consent)}
-            aria-describedby={errors.consent ? "consent-error" : undefined}
+            aria-describedby={errors.consent ? fid("consent-error") : undefined}
             {...register("consent")}
           />
           <span>{caslConsent}</span>
         </label>
         {errors.consent ? (
-          <p id="consent-error" className="field-error">
+          <p id={fid("consent-error")} className="field-error">
             {errors.consent.message}
           </p>
         ) : null}
       </div>
       <div className="absolute left-[-9999px] h-px w-px overflow-hidden" aria-hidden="true">
-        <label htmlFor="company-website">Company website</label>
-        <input id="company-website" type="text" tabIndex={-1} autoComplete="off" {...register("honeypot")} />
+        <label htmlFor={fid("company-website")}>Company website</label>
+        <input id={fid("company-website")} type="text" tabIndex={-1} autoComplete="off" {...register("honeypot")} />
       </div>
       <input type="hidden" {...register("submittedAt", { valueAsNumber: true })} />
       <input type="hidden" {...register("pagePath")} />
       <button type="submit" className="btn-primary w-full md:w-auto" disabled={status === "submitting"}>
         {status === "submitting" ? "Submitting…" : "Register for Updates"}
       </button>
-      <div id="form-status" aria-live="polite">
+      <div id={fid("form-status")} aria-live="polite">
         {status === "error" ? (
           <p role="alert" className="field-error">
             {serverError}

@@ -26,8 +26,8 @@ export function buildMetadata({ title, description, path, noindex = false }: Met
       images: [
         {
           url: `${site.url}${images.hero.src}`,
-          width: 1200,
-          height: 630,
+          width: images.hero.width,
+          height: images.hero.height,
           alt: images.hero.alt,
         },
       ],
